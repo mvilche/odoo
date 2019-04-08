@@ -18,9 +18,17 @@
 Ejecutar para iniciar el servicio
 
 ```sh
-docker run -d --name jboss7.1.1 -e TIMEZONE=America/Montevideo -v $PWD/jboss:/opt/jboss -e USERID=1000 sofislab/jboss:as7.1.1-jdk7-alpine3.8
+docker run -d --name odoo11 -P 8070:8070 -e POSTGRES_HOST=postgres -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=odoo -e POSTGRES_PORT=5432 -e TIMEZONE=America/Montevideo -e USER_ID=1000 -e GROUP_ID=1000 -v $PWD/odoo:/opt/app/odoo mvilche/odoo:11-alpine3.9
 
 ```
+
+### Persistencia de datos
+
+
+| Directorio | Detalle |
+| ------ | ------ |
+| /opt/app/odoo | Directorio raiz |
+
 
 ### Variables
 
