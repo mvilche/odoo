@@ -35,8 +35,8 @@ docker run -d --name jboss7.1.1 -e TIMEZONE=America/Montevideo -v $PWD/jboss:/op
 | POSTGRES_PASSWORD | Contraseña servidor postgres |
 | POSTGRES_PORT | Puerto servidor postgres |
 | CUSTOM_REPO  | Repositorio git adicional (El mismo se descargará en el directorio custom_addons) |
-| PULL_NEW_CHANGES | Realiza un pull al repositorio oficial de odoo previo al inciiar (true | false) |
-| CHECK_REQUIREMENTS | Ejecuta requirements.txt previo al iniciar (true | false) |
+| PULL_NEW_CHANGES | Realiza un pull al repositorio oficial de odoo previo al inciiar (true or false) |
+| CHECK_REQUIREMENTS | Ejecuta requirements.txt previo al iniciar (true or false) |
 
 License
 ----
