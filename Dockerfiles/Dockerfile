@@ -5,7 +5,7 @@ pip3 install --upgrade pip && cd /tmp && git clone --depth=1 -b $ODOO_VERSION $O
 addgroup -S odoo && adduser -h /opt/app -S -G odoo odoo && \
 rm -rf /tmp/odoo /var/cache/apk/*
 WORKDIR /opt/app
-EXPOSE 8069
+EXPOSE 8070
 COPY run.sh /usr/bin/run.sh
 ENTRYPOINT ["/usr/bin/run.sh"]
 CMD ["-c", "/opt/app/odoo/odoo.cfg"]
