@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  odoo:
+    build:
+     context: Dockerfiles
+     dockerfile: Dockerfile
+    image: mvilche/odoo:11
+    volumes:
+     - $PWD/odoo:/opt/app/odoo
+    env_file:
+     - Config.env
+    ports:
+     - "8182:8070"
+    networks:
+     - integracion
+
+
+  postgres:
+    image: postgres:10
+    environment:
+     - POSTGRES_PASSWORD=password
+     - POSTGRES_USER=odoo
+    volumes:
+     - $PWD/database:/var/lib/postgresql/data
+    networks:
+     - integracion
+networks:
+  integracion:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+         - subnet: 142.8.0.0/16
+volumes: 
+  pgdata:
+
