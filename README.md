@@ -6,9 +6,8 @@
 # Funcionalidades:
 
   - Permite definir la zona horaria al iniciar el servicio
-  - Permite definir parametros de JAVA al iniciar el servicio
-  - Permite definir el id del usuario que iniciará el contenedor
-  - El jboss se descarga al iniciar el servicio por primera vez, si ya fue descargado se omite este paso.
+  - Permite definir el usuario y grupo que iniciará el servicio
+  - Permite definir repositorio de addons adicional
   - Non-root
   - Openshift compatible
 
