@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e 
+set -e
 ODOO_ROOT=/opt/app/odoo
 ODOO_DATADIR=/opt/app/odoo/.init
 CUSTOM_REPO_DIR=/opt/app/odoo/custom_addons
