@@ -1,16 +1,16 @@
 #!/bin/sh
-
+set -e 
 ODOO_ROOT=/opt/app/odoo
 ODOO_DATADIR=/opt/app/odoo/.init
 CUSTOM_REPO_DIR=/opt/app/odoo/custom_addons
 ADDONS_REPO_DIR=/opt/app/odoo/addons
-ODOO_VERSION=11.0
+ODOO_VERSION=8.0
 ODOO_REPO=https://github.com/odoo/odoo.git
 
     if [ -z $USER_ID ]; then
     echo "***************************************************"
     echo "NO SE ENCUENTRA LA VARIABLE USER_ID - INICIANDO POR DEFECTO"
-    echo "*******************************************************"    
+    echo "*******************************************************"
     USER_ID=1000
     echo "USER_ID: 1000"
     else
@@ -19,7 +19,7 @@ ODOO_REPO=https://github.com/odoo/odoo.git
     usermod -u $USER_ID odoo
     echo "*******************************************************"
     fi
-   
+
 
      if [ -z $GROUP_ID ]; then
     echo "***************************************************"
@@ -68,12 +68,14 @@ else
 
     echo "***************************************************"
     echo "ODOO NO SE HA INICIALIZADO"
-    echo "EL TIEMPO DE LA DESCARGA E INSTALACION DE LAS DEPENDENCIAS SERA DE UNOS MINUTOS" 
+    echo "EL TIEMPO DE LA DESCARGA E INSTALACION DE LAS DEPENDENCIAS SERA DE UNOS MINUTOS"
     echo "INICIALIZANDO..."
     echo "*******************************************************"
     cd /opt/app && git clone --depth=1 -b $ODOO_VERSION $ODOO_REPO && \
-    cd /opt/app/odoo && pip3 install -r requirements.txt && mkdir /opt/app/odoo/.init /opt/app/odoo/custom_addons && \
-cat << EOF > odoo.cfg 
+    pip install pillow -U
+    cd /opt/app/odoo && pip install -r requirements.txt && mkdir /opt/app/odoo/.init /opt/app/odoo/custom_addons && \
+    pip install pillow -U
+cat << EOF > odoo.cfg
 [options]
 db_host=$POSTGRES_HOST
 db_port=$POSTGRES_PORT
@@ -96,7 +98,7 @@ fi
 if [ $CHECK_REQUIREMENTS == true  ]; then
     echo "**********************************************"
     echo "CHECK_REQUIREMENTS ACTIVADO - INSTALANDO DEPENDENCIAS"
-    cd /opt/app/odoo && pip3 install -r requirements.txt
+    cd /opt/app/odoo && pip install -r requirements.txt
     echo "**********************************************"
 fi
 
@@ -129,4 +131,4 @@ fi
 chown odoo:odoo -R /opt/app/odoo && echo "FIX PERMISSION OK"
 echo "INICIANDO ODOO...."
 sleep 2s
-exec su-exec odoo /opt/app/odoo/odoo-bin "$@"
+exec su-exec odoo /opt/app/odoo/odoo.py "$@"

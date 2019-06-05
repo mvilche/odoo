@@ -18,7 +18,7 @@
 Ejecutar para iniciar el servicio
 
 ```sh
-docker run -d --name odoo11 -P 8070:8070 -e POSTGRES_HOST=postgres -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=odoo -e POSTGRES_PORT=5432 -e TIMEZONE=America/Montevideo -e USER_ID=1000 -e GROUP_ID=1000 -v $PWD/odoo:/opt/app/odoo mvilche/odoo:11-alpine3.9
+docker run -d --name odoo11 -P 8070:8070 -e POSTGRES_HOST=postgres -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=odoo -e POSTGRES_PORT=5432 -e TIMEZONE=America/Montevideo -e USER_ID=1000 -e GROUP_ID=1000 -v $PWD/odoo:/opt/app/odoo mvilche/odoo:8-alpine3.9
 
 ```
 
