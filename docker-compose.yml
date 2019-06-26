@@ -1,10 +1,7 @@
 version: '3.3'
 services:
   odoo:
-    build:
-     context: Dockerfiles
-     dockerfile: Dockerfile
-    image: mvilche/odoo:11
+    image: mvilche/odoo:8-alpine3.9
     volumes:
      - $PWD/odoo:/opt/app/odoo
     env_file:

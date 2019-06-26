@@ -131,4 +131,4 @@ fi
 chown odoo:odoo -R /opt/app/odoo && echo "FIX PERMISSION OK"
 echo "INICIANDO ODOO...."
 sleep 2s
-exec su-exec odoo /opt/app/odoo/odoo.py --without-demo=WITHOUT_DEMO "$@"
+exec su-exec odoo /opt/app/odoo/odoo.py --without-demo=True "$@"
