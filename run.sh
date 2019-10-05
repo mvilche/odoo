@@ -10,8 +10,8 @@ else
 echo "···································································································"
 echo "TIMEZONE SETEADO ENCONTRADO: " $TIMEZONE
 echo "···································································································"
-cat /usr/share/zoneinfo/$TIMEZONE > /etc/localtime && \
-echo $TIMEZONE > /etc/timezone
+cat /usr/share/zoneinfo/$TIMEZONE >> /etc/localtime && \
+echo $TIMEZONE >> /etc/timezone
 fi
 echo "INICIANDO ODOO...."
 sleep 2s
