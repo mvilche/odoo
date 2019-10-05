@@ -15,4 +15,15 @@ echo $TIMEZONE >> /etc/timezone
 fi
 echo "INICIANDO ODOO...."
 sleep 2s
+
+
+
+if [ `id -u` -ge 10000 ]; then
+cat /etc/passwd | sed -e "s/^openshift:/builder:/" &gt; /tmp/passwd
+echo "openshift:x:`id -u`:`id -g`:,,,:/opt/odoo:/bin/bash" &gt;&gt; /tmp/passwd
+cat /tmp/passwd &gt; /etc/passwd
+rm /tmp/passwd
+fi
+
+
 exec /opt/odoo/odoo-bin "$@"
