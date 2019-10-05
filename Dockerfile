@@ -5,7 +5,7 @@ pip3 install --upgrade pip
 RUN mkdir -p /opt && cd /opt && git clone --depth=1 -b $ODOO_VERSION $ODOO_REPO && cd /opt/odoo && pip3 install -r requirements.txt && npm install -g less
 COPY run.sh /usr/bin/run.sh
 RUN mkdir -p /opt/odoo/server-config && rm -rf /etc/localtime  && touch /etc/timezone /etc/localtime && \
-adduser -D -u 1001 -h /opt/odoo && \
+adduser -D -u 1001 -h /opt/odoo odoo && \
 chown 1001 -R /opt /usr/bin/run.sh /etc/timezone /etc/localtime  && \
 chgrp -R 0 /opt /usr/bin/run.sh /etc/timezone /etc/localtime && \
 chmod u=g -R /opt /usr/bin/run.sh /etc/timezone /etc/localtime && \
