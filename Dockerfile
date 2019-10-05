@@ -6,13 +6,15 @@ RUN mkdir -p /opt && cd /opt && git clone --depth=1 -b $ODOO_VERSION $ODOO_REPO 
 COPY run.sh /usr/bin/run.sh
 RUN mkdir -p /opt/odoo/server-config && rm -rf /etc/localtime  && touch /etc/timezone /etc/localtime && \
 adduser -D -u 1001 -h /opt/odoo odoo && \
+usermod -aG 0 odoo && \
 chown 1001 -R /opt /usr/bin/run.sh /etc/timezone /etc/localtime  && \
 chgrp -R 0 /opt /usr/bin/run.sh /etc/timezone /etc/localtime && \
-chmod u=g -R /opt /usr/bin/run.sh /etc/timezone /etc/localtime && \
+chmod g=u -R /opt /usr/bin/run.sh /etc/timezone /etc/localtime && \
 chmod +x /opt/odoo/odoo-bin /usr/bin/run.sh && \
 rm -rf /var/cache/apk/*
 WORKDIR /opt/odoo
 EXPOSE 8070
+ENV HOME /opt/odoo
 USER 1001
 ENTRYPOINT ["/usr/bin/run.sh"]
 CMD ["-c", "/opt/odoo/server-config/odoo.cfg"]
