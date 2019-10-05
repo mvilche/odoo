@@ -34,7 +34,7 @@
         db_port=5432
         db_user=odoo
         db_password=odoo
-        addons_path=/opt/odoo/addons,/opt/app/odoo/custom_addons
+        addons_path=/opt/odoo/addons,/opt/odoo/custom_addons
         data_dir=/opt/odoo/datadir
         xmlrpc_port=8070
     kind: ConfigMap
