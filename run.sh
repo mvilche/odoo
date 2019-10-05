@@ -13,17 +13,11 @@ echo "·····································
 cat /usr/share/zoneinfo/$TIMEZONE >> /etc/localtime && \
 echo $TIMEZONE >> /etc/timezone
 fi
+
+
+ID=$(id -u)
+echo "openshift:x:$ID:$ID:Openshift user,,,:/opt/odoo:/bin/bash" >> /etc/passwd
 echo "INICIANDO ODOO...."
+
 sleep 2s
-
-
-
-if [ `id -u` -ge 10000 ]; then
-cat /etc/passwd | sed -e "s/^openshift:/builder:/" &gt; /tmp/passwd
-echo "openshift:x:`id -u`:`id -g`:,,,:/opt/odoo:/bin/bash" &gt;&gt; /tmp/passwd
-cat /tmp/passwd &gt; /etc/passwd
-rm /tmp/passwd
-fi
-
-
 exec /opt/odoo/odoo-bin "$@"
