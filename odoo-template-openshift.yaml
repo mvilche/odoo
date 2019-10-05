@@ -229,7 +229,7 @@
       source:
         contextDir: .
         git:
-          ref: master
+          ref: 11-openshift
           uri: 'https://github.com/mvilche/odoo.git'
         type: Git
       strategy:
@@ -246,3 +246,18 @@
         app: odoo
       name: odoo
     spec: {}
+
+
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      finalizers:
+      - kubernetes.io/pvc-protection
+      name: odoo-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Gi
+

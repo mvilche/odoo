@@ -2,7 +2,7 @@ FROM alpine:3.10
 ENV PYTHON_VERSION=python3 ODOO_VERSION=11.0 ODOO_REPO=https://github.com/odoo/odoo.git
 RUN apk add --no-cache --update $PYTHON_VERSION shadow su-exec nodejs npm wkhtmltopdf tzdata postgresql-dev git gcc libxml2 libxslt-dev py3-lxml libxml2-dev libc-dev python3-dev jpeg-dev py3-psutil linux-headers openldap-dev tiff-dev && \
 pip3 install --upgrade pip
-RUN mkdir -p /opt && git clone --depth=1 -b $ODOO_VERSION $ODOO_REPO && cd /opt/odoo && pip3 install -r requirements.txt && npm install -g less
+RUN mkdir -p /opt && cd /opt && git clone --depth=1 -b $ODOO_VERSION $ODOO_REPO && cd /opt/odoo && pip3 install -r requirements.txt && npm install -g less
 COPY run.sh /usr/bin/run.sh
 RUN mkdir -p /opt/odoo/server-config && rm -rf /etc/localtime  && touch /etc/timezone /etc/localtime && \
 adduser -D -u 1001 -h /opt/odoo && \
